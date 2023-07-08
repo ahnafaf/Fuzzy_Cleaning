@@ -23,4 +23,6 @@ words = [
 
 words = pd.DataFrame(words, columns=["Word", "Synonym1", "Synonym2", "Typo1", "Typo2"])
 
-typos = words[["Word","Typo1", "Typo2"]]
+typos = words[["Typo1", "Typo2"]]
+
+typos.to_csv('typos.csv', index=False)
