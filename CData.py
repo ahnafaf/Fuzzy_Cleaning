@@ -37,10 +37,6 @@ class base(pd.DataFrame):
 
 class CD(base):
     
-#    def __init__(self, *args, **kwargs):
-#        super().__init__(*args, **kwargs)
-      
-        
       
     def reduce_repeats(self): #Replaces words in place
 
