@@ -18,7 +18,7 @@ class base(pd.DataFrame):
 
 
 
-    def application(self,func,skip_first=None):
+    def implimentation(self,func,skip_first=None):
         
         null_cols = self.new_cols(skip_first)
         iter_nulls = iter(null_cols)
@@ -59,7 +59,7 @@ class CD(base):
         def apply_correction(word):
             return spell.correction(word)
     
-        return self.application(apply_correction,skip_first=False)
+        return self.implimentation(apply_correction,skip_first=False)
     
     
     
@@ -68,7 +68,7 @@ class CD(base):
         def apply_correction(word):
             return process.extractOne(word, self.iloc[:,0])[0]
             
-        return self.application(apply_correction,skip_first=True)
+        return self.implimentation(apply_correction,skip_first=True)
         
 
 countries = pd.read_csv("countries.csv")
