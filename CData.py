@@ -6,7 +6,7 @@ from thefuzz import process
 
 class base(pd.DataFrame):
     
-    def new_cols(self,skip_first=None): #Issue: Adds cols after all cols, not just the ones with mistakes
+    def new_cols(self,skip_first=None):
         
         null_cols = []
         for col in self.columns[1:] if skip_first else self.columns:
@@ -37,8 +37,8 @@ class base(pd.DataFrame):
 
 class CD(base):
     
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+#    def __init__(self, *args, **kwargs):
+#        super().__init__(*args, **kwargs)
       
         
       
