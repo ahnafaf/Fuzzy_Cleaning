@@ -58,14 +58,12 @@ class CD(pd.DataFrame):
         return self.implimentation(apply_correction,skip_first=False)
     
     
-    
     def fuzzed(self):
         
         def apply_correction(word):
             return process.extractOne(word, self.iloc[:,0])[0]
             
         return self.implimentation(apply_correction,skip_first=True)
-
 
     
     def embed(self, openai_api_key): #Used by other funcs
@@ -108,6 +106,7 @@ def match(df): #Assumes first col contains valid values and last col contains ch
     else:
         lst = df[~df.iloc[:, -1].isin(df.iloc[:, 0])]
         return lst
+        
         
 df = pd.read_csv(r"countries,cars,food.csv")
 openai_api_key = os.getenv("openai_api_key")
