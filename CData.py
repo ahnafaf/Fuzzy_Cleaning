@@ -81,7 +81,7 @@ class CD(pd.DataFrame):
         cluster_model = KMeans(n_clusters=n_clusters,n_init="auto").fit(embeds)
         array = cluster_model.labels_
         
-        def formater(self,array):
+        def formater(self,array): #Probably should be made into its own func to be used by other funcs
             pairs = {}
             for num, val in zip(array, df_flat):
                 if num in pairs:
