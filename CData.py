@@ -1,7 +1,7 @@
 import pandas as pd
 import re
 from spellchecker import SpellChecker
-from thefuzz import process
+from rapidfuzz import process
 import os
 import openai
 import numpy as np
@@ -108,11 +108,10 @@ def match(df): #Assumes first col contains valid values and last col contains ch
         return lst
         
         
-df = pd.read_csv(r"countries,cars,food.csv")
+df = pd.read_csv(r"countries.csv")
 openai_api_key = os.getenv("openai_api_key")
 
-pairs = CD(df).k_means(openai_api_key,n_clusters=3)
-
+fuzzed = CD(df).fuzzed()
 
 
 
