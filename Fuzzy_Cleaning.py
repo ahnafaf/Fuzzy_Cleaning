@@ -32,18 +32,17 @@ def Meta_Labelling(series,n):
     temperature = 0.4,
     messages=[
     {"role": "system", "content": f"{system_message}"},
-    {"role": "user", "content": f"{str(series.to_list())}"}
+    {"role": "user", "content": f"{str(series.to_list())}"} 
     ])
     
     response = completion.choices[0]["message"]["content"]
     
-    #converting the string output to a dataframe
-    
+    #converting the string response to a dataframe
     df_dict = {}
     for line in response.split("\n"):
         line = line.split(":")
         key = line[0]
-        values = [subcat.strip() for subcat in line[1].split(",")]
+        values = [val.strip() for val in line[1].split(",")]
         df_dict[key] = values
         
     df = pd.DataFrame.from_dict(df_dict, orient='index').T
