@@ -6,6 +6,7 @@ import os
 import openai
 import numpy as np
 from sklearn.cluster import KMeans
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 class CD(pd.DataFrame):
@@ -58,7 +59,7 @@ class CD(pd.DataFrame):
         return self.implimentation(apply_correction,skip_first=False)
     
     
-    def fuzzed(self):
+    def fuzz(self):
         
         def apply_correction(word):
             return process.extractOne(word, self.iloc[:,0])[0]
@@ -96,8 +97,12 @@ class CD(pd.DataFrame):
                     pairs[num] += [np.nan] * (len(pairs[long])-len(pairs[num]))
                     
             return pd.DataFrame(pairs)
-        
+                
         return formater(self, array)
+    
+    def big_fuzz():
+        
+
     
 #For Testing
 def match(df): #Assumes first col contains valid values and last col contains checked values
