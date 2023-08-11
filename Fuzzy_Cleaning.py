@@ -23,27 +23,24 @@ def meta_labelling(series: pd.Series, n: int):
     (pd.DataFrame): A DataFrame with the meta categories as columns and the sorted items as values.
     """
     
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo",
+    llm = ChatOpenAI(model_name = "gpt-3.5-turbo",
                  temperature=0.3)
-    
     
     template = ChatPromptTemplate.from_messages([
     ("system", """You will be provided a list and will sort them into {number} meta categories based on semantics.
                     Return each category in one line. The format should be similar to the following:
                     Meta Label1: Item1, Item2, Item3
-                    Meta Label2: Item1, Item2, Item3"""),
-                    
+                    Meta Label2: Item1, Item2, Item3"""),     
     ("human", "{data}")])
      
-    template.format_messages(number = str(n), data = str(series.to_list()))
-    
-    
-    response = llm(template)
+    formatted_template = template.format_messages(number = str(n), data = str(series.tolist()))
+
+    response = llm(formatted_template).content
 
     return response_to_df(response)
 
 
-def response_to_df(response: str):
+def response_to_df(response):
     """
     Convert a response string into a DataFrame of meta categories and sorted items.
     
